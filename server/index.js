@@ -7,7 +7,7 @@ globalThis.fetch = fetch;
 globalThis.Headers = Headers;
 globalThis.Request = Request;
 globalThis.Response = Response;
-globalThis.Blob = BlobModule.Blob || FormBlob; // 둘 다 커버
+globalThis.Blob = BlobModule.Blob || FormBlob;
 globalThis.FormData = FormData;
 globalThis.File = File;
 
@@ -38,22 +38,65 @@ app.post("/api/recipe", async (req, res) => {
       messages: [
         {
           role: "system",
-          content:
-            "당신은 자취생 요리 전문가입니다. 입력된 재료로 간단하고 현실적인 1인분 요리법을 추천하세요. 요리 이름과 간단한 설명, 조리법 순서로 구성하세요.",
+          content: `당신은 자취생 요리 전문가입니다. 아래 형식에 맞춰 JSON 배열로 3가지 1인분 요리를 추천하세요.
+[
+  {
+    "title": "요리 이름",
+    "ingredients": ["재료1", "재료2"],
+    "steps": ["1단계 설명", "2단계 설명"]
+  },
+  ...
+]`
         },
         {
           role: "user",
-          content: `재료: ${ingredients}`,
+          content: `재료: ${ingredients}`
         },
-      ],
-      temperature: 0.7,
+      ]
     });
 
     const message = completion.choices[0].message.content;
-    res.json({ recipe: message });
+    console.log("📦 GPT 응답 원문:", message); // <-- 응답 확인용 로그
+
+    let recipes;
+    try {
+      // 마크다운 ```json ``` 제거
+      const cleaned = message
+        .replace(/```json/g, "")
+        .replace(/```/g, "")
+        .trim();
+
+      // 여러 배열이 붙어 있는 경우 처리: ][ → ,
+      const merged = cleaned.replace(/]\s*\[/g, ',');
+
+      // 전체를 하나의 배열로 묶기
+      const fixed = `[${merged.replace(/^\[|\]$/g, '')}]`;
+
+      recipes = JSON.parse(fixed);
+      if (!Array.isArray(recipes)) throw new Error("응답이 배열이 아님");
+    } catch (err) {
+      console.error("❌ JSON 파싱 실패:", err);
+      recipes = [
+        {
+          title: "추천 실패",
+          ingredients: [],
+          steps: [message]
+        }
+      ];
+    }
+
+    res.json({ recipes });
   } catch (err) {
     console.error("❌ GPT API 오류:", err);
-    res.status(500).json({ recipe: "레시피 추천에 실패했어요." });
+    res.status(500).json({
+      recipes: [
+        {
+          title: "레시피 추천 실패",
+          ingredients: [],
+          steps: ["GPT API 오류가 발생했습니다."]
+        }
+      ]
+    });
   }
 });
 
