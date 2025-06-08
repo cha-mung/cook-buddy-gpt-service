@@ -1,0 +1,71 @@
+/* client/src/components/FridgePanel.css */
+
+.fridge-container {
+  flex: 2;
+  background: #f4faff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.fridge-input {
+  margin-bottom: 16px;
+}
+
+.fridge-input input {
+  width: 70%;
+  padding: 8px;
+  margin-right: 10px;
+}
+
+.fridge-input p {
+  color: green;
+  margin-top: 8px;
+}
+
+.fridge-grid {
+  /* background-image: url("../image/fridge.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+  width: 100%;
+  height: 300px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.fridge-box {
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.fridge-box.selected {
+  background: #d0eaff;
+  font-weight: bold;
+  color: #2a75f3;
+}
+
+.fridge-box .delete-button {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+.fridge-box .star {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+}
