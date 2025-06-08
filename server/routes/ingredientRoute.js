@@ -1,14 +1,71 @@
+// server/routes/ingredientRoute.js
 import express from "express";
 import fs from "fs";
 import path from "path";
+import admin from "firebase-admin";
+import dotenv from "dotenv";
+dotenv.config();
+
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 export default function (openai) {
   const router = express.Router();
 
-  router.post("/", async (req, res) => {
-    const { mainIngredients, extraIngredients } = req.body;
+  // ESM용 __dirname
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
 
-    // 🔹 1. 로컬 레시피 데이터 불러오기
+  // Firebase 초기화
+  if (!admin.apps.length) {
+    const serviceAccountPath = path.resolve(__dirname, "../firebase/serviceAccountKey.json");
+    const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf-8"));
+
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      databaseURL: process.env.FIREBASE_DATABASE_URL,
+    });
+  }
+
+  const db = admin.database();
+  const usersRef = db.ref("users");
+
+  // ✅ 레시피 추천 요청
+  router.post("/", async (req, res) => {
+    const { userId } = req.body;
+
+    if (!userId) {
+      return res.status(400).json({ message: "userId가 필요합니다." });
+    }
+
+    // 1. 사용자 재료 가져오기
+    let fridgeItems = [];
+    try {
+      const snapshot = await usersRef.child(userId).child("fridge").once("value");
+      fridgeItems = snapshot.val() || [];
+
+      if (!fridgeItems.length) {
+        throw new Error("냉장고에 재료가 없습니다.");
+      }
+    } catch (err) {
+      console.error("❌ Firebase 재료 조회 실패:", err);
+      return res.status(500).json({
+        recipes: [
+          {
+            title: "레시피 추천 실패",
+            mainIngredients: [],
+            extraIngredients: [],
+            steps: ["냉장고 정보를 불러오는 중 문제가 발생했습니다."],
+          },
+        ],
+      });
+    }
+
+    // 2. 재료 분리
+    const mainIngredients = fridgeItems.slice(0, 2);
+    const extraIngredients = fridgeItems.slice(2);
+
+    // 3. 로컬 레시피 로드
     const dataPath = path.join(process.cwd(), "server", "data", "recipes.json");
     let localRecipes = [];
     try {
@@ -18,12 +75,12 @@ export default function (openai) {
       console.error("❌ 레시피 데이터 로딩 실패:", err);
     }
 
-    // 🔹 2. 사용자 재료와 일치하는 로컬 레시피 추출
-    const filtered = localRecipes.filter((recipe) => {
-      return recipe.mainIngredients.every(ing => mainIngredients.includes(ing));
-    });
+    // 4. 로컬 레시피 필터링
+    const filtered = localRecipes.filter((recipe) =>
+      recipe.mainIngredients.every((ing) => mainIngredients.includes(ing))
+    );
 
-    // 🔹 3. 프롬프트 구성 (최대 3개 레시피 포함)
+    // 5. GPT 프롬프트 구성
     const reference = filtered.slice(0, 3).map((r, i) =>
       `${i + 1}. ${r.title} - main: ${r.mainIngredients.join(", ")}, extra: ${r.extraIngredients.join(", ")}`
     ).join("\n");
@@ -67,8 +124,8 @@ export default function (openai) {
             title: "추천 실패",
             mainIngredients: [],
             extraIngredients: [],
-            steps: [message]
-          }
+            steps: [message],
+          },
         ];
       }
 
@@ -81,9 +138,9 @@ export default function (openai) {
             title: "레시피 추천 실패",
             mainIngredients: [],
             extraIngredients: [],
-            steps: ["GPT API 오류가 발생했습니다."]
-          }
-        ]
+            steps: ["GPT API 오류가 발생했습니다."],
+          },
+        ],
       });
     }
   });
