@@ -32,6 +32,438 @@
     "portion": "3인분",
     "description": "꼬리가 너-무- 매력적인 두부새우전. 두부와 야채를 한번에!! 영양까지 만점인 두부새우전. 모양도 이쁘고 맛까지 좋은 두부새우전!! 함께 만들어 보아요♥",
     "steps": []
+    },
+  {
+    "title": "알밥",
+    "mainIngredients": ["밥", "날치알"],
+    "extraIngredients": [
+      "당근",
+      "치자단무지",
+      "신김치",
+      "무순",
+      "김가루",
+      "후리가케",
+      "참기름",
+      "통깨",
+      "계란"
+    ],
+    "portion": "2인분",
+    "description": "간단하게 만들어 보는 알이 톡톡톡 알밥♥ 다 먹고 누룽지까지 싹싹 긁어먹는게 최고죠~ 색깔도 너무 이쁘고 한 그릇만 있으면 반찬도 필요없는 알밥",
+    "steps": []
+  },
+  {
+    "title": "현미호두죽",
+    "mainIngredients": ["현미", "찹쌀", "호두"],
+    "extraIngredients": [
+      "물",
+      "소금"
+    ],
+    "portion": "2인분",
+    "description": "현미호두죽",
+    "steps": []
+  },
+  {
+    "title": "토마토스파게티",
+    "mainIngredients": [
+      "토마토", "파스타면"
+    ],
+    "extraIngredients": [
+      "양파",
+      "다진마늘",
+      "피망",
+      "올리브유"
+    ],
+    "portion": "1인분",
+    "description": "한번 만들어 두면 이모저모 쓸 용도가 많은 토마토소스를 이용한 토마토 스파게티.",
+    "steps": []
+  },
+  {
+    "title": "갈릭치킨",
+    "mainIngredients": ["닭", "통마늘", "다진마늘", "꿀"],
+    "extraIngredients": [
+      "화이트와인",
+      "올리브유",
+      "마늘솔트",
+      "파인애플",
+      "마요네즈",
+      "머스터드",
+      "식초"
+    ],
+    "portion": "2인분",
+    "description": "요즘 갈릭이 대세인거 같아요~ 그래서 오늘은 제가 너무 좋아하는 닭과 마늘을 한번에!! 달콤한 마늘향이 가득한 갈릭치킨을 만들어 보았어요~",
+    "steps": []
+  },
+  {
+    "title": "양파링튀김",
+    "mainIngredients": [      "양파",
+      "빵가루",
+      "달걀",
+      "밀가루"],
+    "extraIngredients": [
+      "파슬리"
+    ],
+    "portion": "2인분",
+    "description": "완전 바삭바삭 맛있어요~ 특히 양파를 싫어하는 아이들에게도 거부감없이! 왜냐면 바삭바삭하고 매운맛도 전혀 없답니다!",
+    "steps": []
+  },
+{
+    "title": "오징어볶음",
+    "mainIngredients": ["오징어", "양파", "당근"],
+    "extraIngredients": ["고추장", "간장", "설탕", "참기름"],
+    "portion": "2인분",
+    "description": "매콤달콤한 오징어볶음, 밥과 함께 먹으면 최고예요!",
+    "steps": []
+},
+{
+    "title": "된장찌개",
+    "mainIngredients": ["된장", "두부", "호박"],
+    "extraIngredients": ["양파", "대파", "고추", "마늘"],
+    "portion": "2인분",
+    "description": "한국의 대표적인 찌개, 된장찌개는 구수하고 맛있어요.",
+    "steps": []
+  },
+{
+    "title": "김치찌개",
+    "mainIngredients": ["김치", "돼지고기", "두부"],
+    "extraIngredients": ["양파", "대파", "고추", "마늘"],
+    "portion": "2인분",
+    "description": "매콤하고 시원한 김치찌개, 밥과 함께 먹으면 든든해요.",
+    "steps": []
+  },
+{
+    "title": "불고기",
+    "mainIngredients": ["소고기", "양파"],
+    "extraIngredients": [ "마늘", "당근"],
+    "portion": "2인분",
+    "description": "달콤하고 짭짤한 불고기, 밥과 함께 먹으면 정말 맛있어요.",
+    "steps": []
+  },
+{
+    "title": "잡채",
+    "mainIngredients": ["당면", "소고기"],
+    "extraIngredients": ["시금치", "버섯", "양파", "간장", "참기름", "당근"],
+    "portion": "2인분",
+    "description": "쫄깃한 당면과 다양한 채소가 어우러진 잡채, 특별한 날에 즐기기 좋아요.",
+    "steps": []
+  },
+{
+    "title": "김밥",
+    "mainIngredients": ["밥", "김"],
+    "extraIngredients": ["단무지", "당근", "오이", "계란", "참기름", "우엉엉"],
+    "portion": "2인분",
+    "description": "간편하게 먹을 수 있는 김밥, 다양한 재료로 속을 채워 맛있게 즐길 수 있어요.",
+    "steps": []
+  },
+{
+    "title": "떡볶이",
+    "mainIngredients": ["떡", "어묵"],
+    "extraIngredients": ["고추장", "설탕", "양배추", "대파"],
+    "portion": "2인분",
+    "description": "매콤달콤한 떡볶이, 간식으로도 좋고 술안주로도 좋아요.",
+    "steps": []
+  },
+{
+    "title": "순두부찌개",
+    "mainIngredients": ["순두부"],
+    "extraIngredients": ["고추장", "간장", "대파", "마늘", "달걀"],
+    "portion": "2인분",
+    "description": "부드러운 순두부와 매콤한 국물이 일품인 순두부찌개.",
+    "steps": []
+  },
+{
+    "title": "부추전",
+    "mainIngredients": ["부추", "밀가루"],
+    "extraIngredients": ["물", "소금", "식용유", "고추", "계란란"],
+    "portion": "2인분",
+    "description": "바삭하고 고소한 부추전, 간단하게 만들 수 있어요.",
+    "steps": []
+  },
+{
+    "title": "호박전",
+    "mainIngredients": ["호박", "밀가루"],
+    "extraIngredients": ["물", "소금", "식용유", "계란"],
+    "portion": "2인분",
+    "description": "부드럽고 고소한 호박전, 간단하게 만들 수 있어요.",
+    "steps": []
+  },
+{
+    "title": "계란찜",
+    "mainIngredients": ["계란"],
+    "extraIngredients": ["물", "소금", "대파", "간장"],
+    "portion": "2인분",
+    "description": "부드럽고 촉촉한 계란찜, 간단하게 만들 수 있어요.",
+    "steps": []
+  },
+{
+    "title": "감자조림",
+    "mainIngredients": ["감자"],
+    "extraIngredients": ["간장", "설탕", "마늘", "대파", "참기름"],
+    "portion": "2인분",
+    "description": "달콤하고 짭짤한 감자조림, 밥과 함께 먹으면 정말 맛있어요.",
+    "steps": []
+  },
+{
+    "title": "시금치나물",
+    "mainIngredients": ["시금치"],
+    "extraIngredients": ["간장", "참기름", "마늘", "깨소금"],
+    "portion": "2인분",
+    "description": "간단하게 만들 수 있는 시금치나물, 밥 반찬으로 좋아요.",
+    "steps": []
+  },
+{
+    "title": "콩나물국",
+    "mainIngredients": ["콩나물"],
+    "extraIngredients": ["간장", "대파", "마늘", "고추"],
+    "portion": "2인분",
+    "description": "시원하고 구수한 콩나물국, 아침에 먹기 좋은 국물 요리예요.",
+    "steps": []
+  },
+{
+    "title": "오이무침",
+    "mainIngredients": ["오이"],
+    "extraIngredients": ["고추가루", "식초", "설탕", "마늘", "참기름"],
+    "portion": "2인분",
+    "description": "새콤달콤한 오이무침, 간단하게 만들 수 있어요.",
+    "steps": []
+  },
+{
+    "title": "배추겉절이",
+    "mainIngredients": ["배추"],
+    "extraIngredients": ["고추가루", "식초", "설탕", "마늘", "참기름"],
+    "portion": "2인분",
+    "description": "아삭아삭한 배추겉절이, 밥과 함께 먹으면 정말 맛있어요.",
+    "steps": []
+  },
+{
+    "title": "감자전",
+    "mainIngredients": ["감자", "밀가루"],
+    "extraIngredients": ["물", "소금", "식용유", "계란"],
+    "portion": "2인분",
+    "description": "바삭하고 고소한 감자전, 간단하게 만들 수 있어요.",
+    "steps": []
+  },
+{
+    "title": "고등어조림",
+    "mainIngredients": ["고등어", "무"],
+    "extraIngredients": ["간장", "고추가루", "마늘", "대파", "생강"],
+    "portion": "2인분",
+    "description": "매콤하고 짭짤한 고등어조림, 밥과 함께 먹으면 정말 맛있어요.",
+    "steps": []
+  },
+{
+    "title": "닭볶음탕",
+    "mainIngredients": ["닭", "감자", "당근"],
+    "extraIngredients": ["간장", "고추장", "마늘", "대파", "고추"],
+    "portion": "2인분",
+    "description": "매콤하고 달콤한 닭볶음탕, 밥과 함께 먹으면 정말 맛있어요.",
+    "steps": []
+  },
+{
+    "title": "부대찌개",
+    "mainIngredients": ["소시지", "햄", "두부"],
+    "extraIngredients": ["김치", "라면사리", "대파", "고추", "마늘"],
+    "portion": "2인분",
+    "description": "매콤하고 얼큰한 부대찌개, 다양한 재료가 어우러져 맛있어요.",
+    "steps": []
+  },
+  {
+    "title":"참치치오트밀죽",
+    "mainIngredients": ["오트밀", "참치"],
+    "extraIngredients": ["소금", "계란", "대파", "참기름"],
+    "portion": "2인분",
+    "description": "건강한 오트밀과 고소한 참치가 어우러진 참치치오트밀죽, 아침식사로 딱이에요.",
+    "steps": []
+    },
+    {"title": "알리오올리오",
+    "mainIngredients": ["파스타면", "마늘"],
+    "extraIngredients": ["올리브유", "페페론치노", "파슬리", "소금"],
+    "portion": "2인분",
+    "description": "간단하면서도 맛있는 알리오올리오, 마늘과 올리브유의 풍미가 일품이에요.",
+    "steps": []
+},
+    {
+        "title": "크림파스타",
+        "mainIngredients": ["파스타면", "생크림"],
+        "extraIngredients": ["마늘", "양파", "버섯", "파슬리", "소금", "후추", "베이컨"],
+        "portion": "2인분",
+        "description": "부드럽고 고소한 크림파스타, 특별한 날에 즐기기 좋아요.",
+        "steps": []
     }
+    ,
+    {
+        "title": "토마토리조또",
+        "mainIngredients": ["쌀", "토마토"],
+        "extraIngredients": ["양파", "마늘", "치킨스톡", "파슬리", "올리브유", "소금", "후추"],
+        "portion": "2인분",
+        "description": "상큼한 토마토와 부드러운 리조또의 조화, 간단하게 만들 수 있어요.",
+        "steps": []
+    },
+    {
+        "title": "버섯볶음밥",
+        "mainIngredients": ["밥", "버섯"],
+        "extraIngredients": ["양파", "당근", "대파", "간장", "참기름"],
+        "portion": "2인분",
+        "description": "고소하고 맛있는 버섯볶음밥, 간단하게 만들 수 있어요.",
+        "steps": []
+    },
+    {
+        "title": "새우볶음밥",
+        "mainIngredients": ["밥", "새우"],
+        "extraIngredients": ["양파", "당근", "대파", "간장", "참기름"],
+        "portion": "2인분",
+        "description": "새우의 풍미가 가득한 새우볶음밥, 간단하게 만들 수 있어요.",
+        "steps": []
+    },
+    {
+        "title": "치킨커리",
+        "mainIngredients": ["닭고기", "감자", "당근"],
+        "extraIngredients": ["양파", "마늘", "커리 가루", "코코넛 밀크", "소금", "후추"],
+        "portion": "2인분",
+        "description": "향긋하고 매콤한 치킨커리, 밥과 함께 먹으면 정말 맛있어요.",
+        "steps": []
+    },
+    {
+        "title": "부타동",
+        "mainIngredients": ["밥", "돼지고기"],
+        "extraIngredients": ["양파", "간장", "설탕", "미림", "대파"],
+        "portion": "2인분",
+        "description": "달콤하고 짭짤한 부타동, 밥과 함께 먹으면 정말 맛있어요.",
+        "steps": []
+    },
+    {
+        "title": "카레라이스",
+        "mainIngredients": ["밥", "카레"],
+        "extraIngredients": ["감자", "당근", "양파", "고기"],
+        "portion": "2인분",
+        "description": "달콤하고 매콤한 카레라이스, 간단하게 만들 수 있어요.",
+        "steps": []
+    },
+    {
+        "title": "또띠아피자",
+        "mainIngredients": ["또띠아", "치즈"],
+        "extraIngredients": ["토마토소스", "올리브", "양파", "피망", "버섯"],
+        "portion": "2인분",
+        "description": "간단하게 만들 수 있는 또띠아피자, 다양한 토핑으로 취향에 맞게 즐길 수 있어요.",
+        "steps": []
+    },
+    {"title": "스테이크",
+    "mainIngredients": ["소고기", "마늘"],
+    "extraIngredients": ["소금", "후추", "올리브유", "버터", "로즈마리"],
+    "portion": "2인분",
+    "description": "고소하고 육즙 가득한 스테이크, 특별한 날에 즐기기 좋아요.",
+    "steps": []
+  },
+  {
+    "title": "연어구이",
+    "mainIngredients": ["연어", "레몬"],
+    "extraIngredients": ["소금", "후추", "올리브유", "허브"],
+    "portion": "2인분",
+    "description": "부드럽고 고소한 연어구이, 건강한 한 끼로 좋아요.",
+    "steps": []
+  },
+  {
+    "title": "닭가슴살샐러드",
+    "mainIngredients": ["닭가슴살", "상추"],
+    "extraIngredients": ["방울토마토", "오이", "올리브유", "발사믹 식초", "소금", "후추"],
+    "portion": "2인분",
+    "description": "건강하고 담백한 닭가슴살샐러드, 다이어트에도 좋아요.",
+    "steps": []
+  },
+  {
+    "title": "퀘사디아",
+    "mainIngredients": ["또띠아", "치즈"],
+    "extraIngredients": ["닭고기", "피망", "양파", "사워크림"],
+    "portion": "2인분",
+    "description": "간단하게 만들 수 있는 퀘사디아, 다양한 재료로 속을 채워 맛있게 즐길 수 있어요.",
+    "steps": []
+  },
+  {
+    "title": "타코",
+    "mainIngredients": ["타코 쉘", "다진 고기"],
+    "extraIngredients": ["양상추", "토마토", "치즈", "사워크림", "아보카도"],
+    "portion": "2인분",
+    "description": "매콤하고 맛있는 타코, 다양한 재료로 속을 채워 즐길 수 있어요.",
+    "steps": []
+  },
+  {
+    "title": "파히타",
+    "mainIngredients": ["닭고기", "피망", "양파"],
+    "extraIngredients": ["또띠아", "사워크림", "살사 소스"],
+    "portion": "2인분",
+    "description": "매콤하고 향긋한 파히타, 또띠아에 싸서 먹으면 정말 맛있어요.",
+    "steps": []
+  },
+  {
+    "title": "부리토",
+    "mainIngredients": ["또띠아", "밥", "콩"],
+    "extraIngredients": ["닭고기", "치즈", "상추", "살사 소스"],
+    "portion": "2인분",
+    "description": "풍성한 재료가 가득한 부리토, 간편하게 한 끼 식사로 좋아요.",
+    "steps": []
+  },
+  {
+    "title": "치킨윙",
+    "mainIngredients": ["닭날개"],
+    "extraIngredients": ["고추장", "간장", "마늘", "꿀", "참기름"],
+    "portion": "2인분",
+    "description": "매콤달콤한 치킨윙, 간단하게 만들 수 있어요.",
+    "steps": []
+  },
+  {
+    "title": "피쉬앤칩스",
+    "mainIngredients": ["생선", "감자"],
+    "extraIngredients": ["밀가루", "맥주", "소금", "후추", "타르타르 소스"],
+    "portion": "2인분",
+    "description": "바삭하고 고소한 피쉬앤칩스, 맥주와 함께 먹으면 정말 맛있어요.",
+    "steps": []
+  },
+  {
+    "title": "스파이시너겟",
+    "mainIngredients": ["닭가슴살"],
+    "extraIngredients": ["빵가루", "파프리카 가루", "마늘 가루", "양파 가루", "소금", "후추"],
+    "portion": "2인분",
+    "description": "매콤하고 바삭한 스파이시너겟, 간단하게 만들 수 있어요.",
+    "steps": []
+  },
+  {
+    "title": "간장계란밥",
+    "mainIngredients": ["밥", "계란"],
+    "extraIngredients": ["간장", "참기름", "김가루", "파"],
+    "portion": "1인분",
+    "description": "간단하면서도 맛있는 간장계란밥, 아침식사로 딱이에요.",
+    "steps": []
+  },
+  {
+    "title": "두부김치",
+    "mainIngredients": ["두부", "김치"],
+    "extraIngredients": ["대파", "참기름", "통깨"],
+    "portion": "2인분",
+    "description": "부드러운 두부와 매콤한 김치의 조화, 밥과 함께 먹으면 정말 맛있어요.",
+    "steps": []
+  },
+  {
+    "title": "제육볶음",
+    "mainIngredients": ["돼지고기", "양파"],
+    "extraIngredients": ["고추장", "간장", "설탕", "마늘", "대파", "고추"],
+    "portion": "2인분",
+    "description": "매콤하고 달콤한 제육볶음, 밥과 함께 먹으면 정말 맛있어요.",
+    "steps": []
+  },
+  {
+    "title": "찜닭",
+    "mainIngredients": ["닭", "감자"],
+    "extraIngredients": ["간장", "설탕", "마늘", "대파", "당근"],
+    "portion": "2인분",
+    "description": "달콤하고 짭짤한 찜닭, 밥과 함께 먹으면 정말 맛있어요.",
+    "steps": []
+  },
+  {
+    "title": "미역국",
+    "mainIngredients": ["미역"],
+    "extraIngredients": ["간장", "마늘", "대파", "참기름", "소고기"],
+    "portion": "2인분",
+    "description": "구수하고 건강한 미역국, 아침에 먹기 좋은 국물 요리예요.",
+    "steps": []
+  }
 
 ]

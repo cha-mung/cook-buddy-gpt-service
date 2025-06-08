@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState } from "react";
 import Login from "./components/Login";
 
@@ -14,7 +13,7 @@ function App() {
   const handleLogin = (id) => {
     setUserId(id);
     localStorage.setItem("userId", id);
-    setIngredients([]); // 초기화
+    fetchFridge(id);
   };
 
   const handleLogout = () => {
@@ -23,6 +22,17 @@ function App() {
     setIngredients([]);
     setRecipes([]);
     setError("");
+  };
+
+  // ✅ 재료 목록 가져오기
+  const fetchFridge = async (uid) => {
+    try {
+      const res = await fetch(`/api/fridge/${uid}`);
+      const data = await res.json();
+      setIngredients(data.ingredients || []);
+    } catch (err) {
+      console.error("❌ 냉장고 재료 조회 실패", err);
+    }
   };
 
   // ✅ 냉장고 재료 추가
@@ -55,6 +65,24 @@ function App() {
     setIngredientInput("");
   };
 
+  // ✅ 냉장고 재료 삭제
+  const handleRemoveIngredient = async (item) => {
+    try {
+      const res = await fetch("/api/fridge/remove", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, ingredient: item }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setIngredients(data.fridge);
+        setStatus(`🗑️ '${item}' 재료가 삭제되었습니다.`);
+      }
+    } catch (err) {
+      console.error("❌ 재료 삭제 실패", err);
+    }
+  };
+
   // ✅ 레시피 추천
   const handleFridgeRecommend = async () => {
     if (!userId) {
@@ -65,7 +93,7 @@ function App() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("/api/fridge-recommend", {
+      const res = await fetch("/api/recommend", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId }),
@@ -98,7 +126,17 @@ function App() {
             <div style={{ flex: 1, background: "#f4faff", padding: "20px", borderRadius: "8px" }}>
               <h2>🧊 내 냉장고</h2>
               <ul>
-                {ingredients.map((ing, i) => <li key={i}> {ing}</li>)}
+                {ingredients.map((ing, i) => (
+                  <li key={i}>
+                    {ing}
+                    <button
+                      style={{ marginLeft: "10px", color: "red" }}
+                      onClick={() => handleRemoveIngredient(ing)}
+                    >
+                      ❌
+                    </button>
+                  </li>
+                ))}
               </ul>
               <input
                 value={ingredientInput}
@@ -114,7 +152,7 @@ function App() {
             <div style={{ flex: 2, background: "#fff7eb", padding: "20px", borderRadius: "8px" }}>
               <h2>🍳 레시피 추천</h2>
               <button onClick={handleFridgeRecommend} disabled={loading}>
-                GPT로 레시피 추천받기
+                냉털 레시피 추천받기
               </button>
               {loading && <p>⏳ 추천 중입니다...</p>}
               {error && <p style={{ color: "red" }}>{error}</p>}
@@ -127,7 +165,7 @@ function App() {
                       <p><b>Main:</b> {r.mainIngredients.join(", ")}</p>
                       <p><b>Extra:</b> {r.extraIngredients.join(", ")}</p>
                       <ol>
-                        {r.steps.map((s, i) => <li key={i}>{s}</li>)}
+                        {r.steps.map((s, i) => <p key={i}>{s}</p>)}
                       </ol>
                     </div>
                   ))}
