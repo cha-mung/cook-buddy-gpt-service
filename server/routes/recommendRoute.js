@@ -12,11 +12,9 @@ import { dirname } from "path";
 const router = express.Router();
 
 export default function (openai) {
-  // __dirname 설정 (ESM)
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
 
-  // Firebase 초기화
   if (!admin.apps.length) {
     const serviceAccountPath = path.resolve(__dirname, "../firebase/serviceAccountKey.json");
     const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf-8"));
@@ -31,7 +29,8 @@ export default function (openai) {
   const usersRef = db.ref("users");
 
   router.post("/", async (req, res) => {
-    const { userId } = req.body;
+    const { userId, mustHaveIngredients = [] } = req.body; // ✅ mustHaveIngredients 추가
+
     if (!userId) {
       return res.status(400).json({ success: false, message: "userId 누락" });
     }
@@ -74,38 +73,39 @@ export default function (openai) {
       console.error("❌ 로컬 레시피 로딩 실패:", err);
     }
 
-    // ✅ 필터링: mainIngredients가 fridgeIngredients에 모두 포함
-    const filtered = localRecipes.filter(recipe =>
-      recipe.mainIngredients.every(ing => fridgeIngredients.includes(ing))
-    );
+    // ✅ 필터링: mainIngredients는 모두 fridge에 있고, mustHaveIngredients도 모두 포함
+    const filtered = localRecipes.filter(recipe => {
+      const hasAllMain = recipe.mainIngredients.every(ing => fridgeIngredients.includes(ing));
+      const includesMustHave = mustHaveIngredients.every(must =>
+        [...recipe.mainIngredients, ...recipe.extraIngredients].includes(must)
+      );
+      return hasAllMain && includesMustHave; // ✅ 필수 재료 포함 조건 추가됨
+    });
 
-    // ✅ GPT 프롬프트 구성
     const reference = filtered.slice(0, 3).map((r, i) =>
       `${i + 1}. ${r.title} - main: ${r.mainIngredients.join(", ")}, extra: ${r.extraIngredients.join(", ")}`
     ).join("\n");
 
+    // ✅ GPT 프롬프트 구성 - 필수 재료 포함 조건 명시
     const prompt = `
-      당신은 1인 가구 자취생을 위한 요리 전문가입니다.
+당신은 1인 가구 자취생을 위한 요리 전문가입니다.
 
-      다음은 사용자의 냉장고 재료 목록입니다:
-      ${fridgeIngredients.join(", ")}
+다음은 사용자의 냉장고 재료 목록입니다:
+${fridgeIngredients.join(", ")}
 
-      아래는 참고 가능한 레시피입니다:
-      ${reference || "(참고 레시피 없음)"}
+사용자가 반드시 포함하고 싶은 재료:
+${mustHaveIngredients.length ? mustHaveIngredients.join(", ") : "(없음)"}
 
-     이 정보를 바탕으로 다음 조건을 반드시 지키세요:
+아래는 참고 가능한 레시피입니다:
+${reference || "(참고 레시피 없음)"}
 
-1. **냉장고 재료 목록에 없는 재료는 절대 포함하지 마세요.**
-   - 예: 냉장고에 '오이, 닭가슴살'만 있으면 '빵', '양파', '소금'도 쓰지 마세요.
-   - 없으면 없는 대로 현실적인 요리를 구성하세요.
+다음 조건을 반드시 지키세요:
 
-2. **현실적이고 간단한 1인분 레시피 3개를 추천하세요.**
-   - 사용자가 쉽게 따라할 수 있어야 합니다.
-   - 불 가능하면 '추천할 수 없음'을 알려주세요.
-
-3. **아래 형식으로 JSON 배열로만 응답하세요.**
-   - 설명, 주석, 기타 텍스트는 절대 포함하지 마세요.
-   - JSON 외 형식이 섞이면 파싱 오류가 납니다.
+1. 냉장고 재료 목록에 없는 재료는 절대 포함하지 마세요.
+2. 반드시 위에서 사용자가 선택한 재료를 포함하세요.
+3. 현실적이고 간단한 1인분 레시피 3개를 추천하세요.
+4. 3개의 레시피는 가능한 서로 다른 요리 방식으로 구성하세요.
+5. JSON 배열 형식으로만 응답하세요. 설명/주석 절대 포함 금지.
 
 형식 예시:
 [
@@ -117,21 +117,6 @@ export default function (openai) {
       "오이와 닭가슴살을 얇게 썬다.",
       "기름 없이 중불로 5분간 볶는다."
     ]
-  },
-  {
-    "title": "오이무침",
-    "mainIngredients": ["오이"],
-    "extraIngredients": [],
-    "steps": [
-      "오이를 얇게 썰어 물기를 제거한다.",
-      "식초나 양념 없이 그대로 먹는다."
-    ]
-  },
-  {
-    "title": "추천할 수 있는 레시피 없음",
-    "mainIngredients": [],
-    "extraIngredients": [],
-    "steps": ["사용자의 냉장고 재료로 만들 수 있는 레시피가 없습니다."]
   }
 ]
 `.trim();

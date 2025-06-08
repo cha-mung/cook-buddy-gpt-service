@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // ✅ useEffect 추가됨
 import Login from "./components/Login";
 
 function App() {
   const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
   const [ingredientInput, setIngredientInput] = useState("");
   const [ingredients, setIngredients] = useState([]);
+  const [mustHave, setMustHave] = useState([]); // ✅ 선택된 필수 재료
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [status, setStatus] = useState("");
+
+  // ✅ 페이지 로드시 userId가 있으면 냉장고 재료 불러오기
+  useEffect(() => {
+    if (userId) {
+      fetchFridge(userId);
+    }
+  }, [userId]);
 
   const handleLogin = (id) => {
     setUserId(id);
@@ -20,11 +28,11 @@ function App() {
     localStorage.removeItem("userId");
     setUserId("");
     setIngredients([]);
+    setMustHave([]); // ✅ 필수 재료 초기화
     setRecipes([]);
     setError("");
   };
 
-  // ✅ 재료 목록 가져오기
   const fetchFridge = async (uid) => {
     try {
       const res = await fetch(`/api/fridge/${uid}`);
@@ -35,7 +43,6 @@ function App() {
     }
   };
 
-  // ✅ 냉장고 재료 추가
   const handleAddIngredient = async () => {
     setStatus("");
     const newItems = ingredientInput.split(",").map((i) => i.trim()).filter(Boolean);
@@ -65,7 +72,6 @@ function App() {
     setIngredientInput("");
   };
 
-  // ✅ 냉장고 재료 삭제
   const handleRemoveIngredient = async (item) => {
     try {
       const res = await fetch("/api/fridge/remove", {
@@ -76,6 +82,7 @@ function App() {
       const data = await res.json();
       if (data.success) {
         setIngredients(data.fridge);
+        setMustHave((prev) => prev.filter((ing) => ing !== item)); // ✅ 삭제 시 mustHave에서도 제거
         setStatus(`🗑️ '${item}' 재료가 삭제되었습니다.`);
       }
     } catch (err) {
@@ -83,7 +90,21 @@ function App() {
     }
   };
 
-  // ✅ 레시피 추천
+  // ✅ 필수 재료 선택 토글
+  const toggleMustHave = (item) => {
+    setMustHave((prev) => {
+      if (prev.includes(item)) {
+        return prev.filter((i) => i !== item);
+      } else {
+        if (prev.length >= 3) {
+          alert("최대 3개까지만 선택할 수 있습니다.");
+          return prev;
+        }
+        return [...prev, item];
+      }
+    });
+  };
+
   const handleFridgeRecommend = async () => {
     if (!userId) {
       setError("로그인이 필요합니다.");
@@ -96,7 +117,7 @@ function App() {
       const res = await fetch("/api/recommend", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId }),
+        body: JSON.stringify({ userId, mustHaveIngredients: mustHave }), // ✅ 필수 재료 전송
       });
       const data = await res.json();
       setRecipes(data.recipes);
@@ -126,17 +147,28 @@ function App() {
             <div style={{ flex: 1, background: "#f4faff", padding: "20px", borderRadius: "8px" }}>
               <h2>🧊 내 냉장고</h2>
               <ul>
-                {ingredients.map((ing, i) => (
-                  <li key={i}>
-                    {ing}
-                    <button
-                      style={{ marginLeft: "10px", color: "red" }}
-                      onClick={() => handleRemoveIngredient(ing)}
-                    >
-                      ❌
-                    </button>
-                  </li>
-                ))}
+                {ingredients.map((ing, i) => {
+                  const isSelected = mustHave.includes(ing);
+                  return (
+                    <li key={i} style={{ cursor: "pointer" }}>
+                      <span
+                        onClick={() => toggleMustHave(ing)}
+                        style={{
+                          fontWeight: isSelected ? "bold" : "normal",
+                          color: isSelected ? "#2a75f3" : "black",
+                        }}
+                      >
+                        {isSelected ? "⭐ " : ""}{ing}
+                      </span>
+                      <button
+                        style={{ marginLeft: "10px", color: "red" }}
+                        onClick={() => handleRemoveIngredient(ing)}
+                      >
+                        ❌
+                      </button>
+                    </li>
+                  );
+                })}
               </ul>
               <input
                 value={ingredientInput}
