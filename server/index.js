@@ -30,6 +30,7 @@ import ingredientRoute from './routes/ingredientRoute.js';
 import queryRoute from './routes/queryRoute.js';
 import RecommendRoute from "./routes/recommendRoute.js";
 import loginRoute from "./routes/loginRoute.js";
+import fridgeRoute from "./routes/fridgeRoute.js";
 
 // 앱 초기화
 const app = express();
@@ -41,6 +42,7 @@ app.use("/api/recipe", ingredientRoute(openai));
 app.use("/api/recipe/query", queryRoute(openai));
 app.use("/api/recommend", RecommendRoute(openai));
 app.use("/api/login", loginRoute); 
+app.use("/api/fridge", fridgeRoute());
 
 // 서버 실행
 const PORT = process.env.PORT || 5000;
