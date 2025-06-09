@@ -221,3 +221,56 @@
   font-size: 0.9rem;
   color: #666;
 }
+
+.App-feedbackForm {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #fff3e6;
+  border: 1px solid #ffd4a3;
+  border-radius: 10px;
+}
+
+.App-feedbackForm textarea {
+  width: 90%;
+  min-height: 80px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  margin-bottom: 0.5rem;
+}
+
+.App-feedbackForm button {
+  padding: 6px 12px;
+  background-color: #ff7e1b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.App-feedbackForm button:hover {
+  background-color: #e66b10;
+}
+
+.App-feedbackSuccess {
+  margin-top: 0.5rem;
+  color: green;
+  font-weight: bold;
+}
+
+.App-feedbackButtons {
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  gap: 0.5rem;
+}
+
+.App-closeButton {
+  background-color: #ccc;
+  color: #333;
+}
+
+.App-closeButton:hover {
+  background-color: #bbb;
+}
