@@ -50,7 +50,7 @@
   animation: fadeIn 0.8s ease-in;
   z-index: 1;
 
-  /* ✅ 하얀색, 두꺼운 테두리 추가 */
+  /* 하얀색, 두꺼운 테두리 추가 */
   border: 6px solid rgb(255, 198, 151);
   box-shadow: 0 4px 10px rgba(111, 76, 16, 0.3); /* 선택: 부드러운 그림자 */
 }
