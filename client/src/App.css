@@ -119,7 +119,7 @@
 .App-description h2 {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #ff8b48;
+  color: #9e1d42;
   margin-bottom: 10px;
 }
 
@@ -141,7 +141,7 @@
   font-size: 3rem;
   font-weight: bold;
   color: #ff8b48;
-  text-shadow: 1px 1px 2px #ffd3b6;
+  text-shadow: 1px 1px 2px #b06533;
 }
 
 .App-subtitle{
@@ -194,4 +194,30 @@
   50% {
     transform: translateY(-6px);
   }
+}
+
+.App-description {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background-color: #ffe4f1;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.App-exampleImageWrapper {
+  margin-top: 1.5rem;
+}
+
+.App-exampleImage {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.App-imageCaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
 }

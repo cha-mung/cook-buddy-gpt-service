@@ -3,6 +3,7 @@ import Login from "./components/Login";
 import FridgePanel from "./components/FridgePanel";
 import RecipePanel from "./components/RecipePanel";
 import { logVisitor } from "./utils/visitorLogger";
+import serviceImage from "./image/service-image.png";
 
 import "./App.css";
 
@@ -182,6 +183,14 @@ function App() {
               냉장고 속 재료를 기반으로 가능한 레시피를 추천해드려요. <br />
               오늘 어떤 요리를 할지 고민이라면, 지금 시작해보세요!
             </p>
+            <div className="App-exampleImageWrapper">
+                <img
+                  src={serviceImage}
+                  alt="Cook Buddy 예시 화면"
+                  className="App-exampleImage"
+                />
+                <p className="App-imageCaption">예시 화면: 냉장고 재료 기반 추천 결과</p>
+              </div>
           </div>
         </main>
       ) : (
