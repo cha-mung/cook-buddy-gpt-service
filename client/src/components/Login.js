@@ -14,7 +14,12 @@ function Login({ onLogin, onRegisterClick }) {
     }
 
     try {
-      const API_URL = process.env.REACT_APP_API_URL;
+      const API_URL =
+        process.env.REACT_APP_API_URL ||
+        (window.location.hostname === "localhost"
+          ? "http://localhost:3001"
+          : "https://cook-buddy-gpt-service.onrender.com");
+
       const res = await fetch(`${API_URL}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

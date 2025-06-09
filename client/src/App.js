@@ -52,7 +52,12 @@ function App() {
 
   const fetchFridge = async (uid) => {
     try {
-      const res = await fetch(`/api/fridge/${uid}`);
+      const API_URL =
+        process.env.REACT_APP_API_URL ||
+        (window.location.hostname === "localhost"
+          ? "http://localhost:3001"
+          : "https://cook-buddy-gpt-service.onrender.com");
+      const res = await fetch(`${API_URL}/api/fridge/${uid}`);
       const data = await res.json();
       setIngredients(data.ingredients || []);
     } catch (err) {
