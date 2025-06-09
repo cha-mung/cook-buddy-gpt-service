@@ -23,9 +23,9 @@
 .fridge-input input {
   width: 90%;
   padding: 10px 14px;
-  border: 2px solid #ffeacc;
+  border: 2px solid #edc3ff;
   border-radius: 999px;
-  background-color: #ffeacc;
+  background-color: #f3ceff;
   font-size: 1rem;
   box-shadow: 1px 1px 6px rgba(210, 180, 255, 0.2);
   outline: none;

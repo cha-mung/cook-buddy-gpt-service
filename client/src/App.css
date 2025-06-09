@@ -43,7 +43,7 @@
   
   margin: 5rem 0;
   padding: 50px 0;
-  background-color: #ffeed0;
+  background-color: #fff1daeb;
   border-radius: 140px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
@@ -136,7 +136,6 @@
   right: 5%;
   width: 140px;
   height: 280px;
-  background-image: url('./image/fridge.png');
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0.9;
