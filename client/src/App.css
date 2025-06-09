@@ -144,6 +144,10 @@
   text-shadow: 1px 1px 2px #ffd3b6;
 }
 
+.App-subtitle{
+  color: #444444;
+}
+
 /* 레시피/냉장고 패널 영역 */
 .App-panels {
   display: flex;

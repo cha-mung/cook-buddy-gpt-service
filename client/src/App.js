@@ -132,6 +132,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1 className="App-title">🍽️ Cook Buddy</h1>
+        <p className="App-subtitle">냉장고엔 재료가 있는데, 요리는 떠오르지 않을 때? <br />
+            Cook Buddy가 메뉴 고민을 끝내드립니다!</p>
       </header>
 
       {!userId ? (

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import "./Login.css"; // 스타일 파일 추가
+import RegisterModal from "./RegisterModal";
+import "./Login.css";
 
-function Login({ onLogin }) {
+function Login({ onLogin, onRegisterClick }) {
   const [inputUserId, setInputUserId] = useState("");
   const [error, setError] = useState("");
+  const [showRegister, setShowRegister] = useState(false);
 
   const handleSubmit = async () => {
     if (!inputUserId.trim()) {
@@ -35,18 +37,28 @@ function Login({ onLogin }) {
   };
 
   return (
-    <div className="login-container">
-      <input
-        type="text"
-        value={inputUserId}
-        onChange={(e) => setInputUserId(e.target.value)}
-        placeholder="User ID를 입력하세요"
-        className="login-input"
-      />
-      <button onClick={handleSubmit} className="login-button">
-        로그인
-      </button>
-      {error && <p className="login-error">{error}</p>}
+    <div>
+      <div className="login-container">
+        <input
+          type="text"
+          value={inputUserId}
+          onChange={(e) => setInputUserId(e.target.value)}
+          placeholder="User ID를 입력하세요"
+          className="login-input"
+        />
+        <button onClick={handleSubmit} className="login-button">
+          로그인
+        </button>
+        {error && <p className="login-error">{error}</p>}
+      </div>
+      {/* 👇 회원가입 링크 추가 */}
+      <div className="login-register-link">
+        아직 아이디가 없나요?{" "}
+        <button onClick={() => setShowRegister(true)} className="register-button">
+          회원가입
+        </button>
+      </div>
+      {showRegister && <RegisterModal onClose={() => setShowRegister(false)} />}
     </div>
   );
 }
