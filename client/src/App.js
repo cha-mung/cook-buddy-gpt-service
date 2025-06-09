@@ -137,6 +137,14 @@ function App() {
       {!userId ? (
         <main className="App-loginSection">
           <Login onLogin={handleLogin} />
+          <div className="App-description">
+            <h2>Cook Buddy란?</h2>
+            <p>
+              자취생을 위한 맞춤형 요리 레시피 추천 서비스입니다. <br />
+              냉장고 속 재료를 기반으로 가능한 레시피를 추천해드려요. <br />
+              오늘 어떤 요리를 할지 고민이라면, 지금 시작해보세요!
+            </p>
+          </div>
         </main>
       ) : (
         <main className="App-main">
