@@ -127,6 +127,8 @@ function App() {
   };
 
   return (
+  <div className="App-wrapper">
+    <div className="App-background" />
     <div className="App">
       <header className="App-header">
         <h1 className="App-title">🍽️ Cook Buddy</h1>
@@ -164,7 +166,9 @@ function App() {
         </main>
       )}
     </div>
-  );
+  </div>
+);
+
 }
 
 export default App;
