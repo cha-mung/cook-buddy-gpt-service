@@ -74,7 +74,12 @@ function App() {
     }
 
     try {
-      const res = await fetch("/api/fridge/add", {
+        const API_URL =
+        process.env.REACT_APP_API_URL ||
+        (window.location.hostname === "localhost"
+          ? "http://localhost:3001"
+          : "https://cook-buddy-gpt-service.onrender.com");
+      const res = await fetch(`${API_URL}/api/fridge/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, ingredients: newItems }),
@@ -96,7 +101,12 @@ function App() {
 
   const handleRemoveIngredient = async (item) => {
     try {
-      const res = await fetch("/api/fridge/remove", {
+        const API_URL =
+          process.env.REACT_APP_API_URL ||
+          (window.location.hostname === "localhost"
+            ? "http://localhost:3001"
+            : "https://cook-buddy-gpt-service.onrender.com");
+      const res = await fetch(`${API_URL}/api/fridge/remove`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, ingredient: item }),
@@ -131,7 +141,13 @@ function App() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("/api/recommend", {
+        const API_URL =
+        process.env.REACT_APP_API_URL ||
+        (window.location.hostname === "localhost"
+          ? "http://localhost:3001"
+          : "https://cook-buddy-gpt-service.onrender.com");
+
+      const res = await fetch(`${API_URL}/api/recommend`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, mustHaveIngredients: mustHave }),
