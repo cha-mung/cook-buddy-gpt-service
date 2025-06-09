@@ -13,9 +13,10 @@ function FridgePanel({
 }) {
   return (
     <div className="fridge-container">
-      <h2>🧊 내 냉장고</h2>
+      <h2>냉장고 속 재료</h2>
 
       <div className="fridge-input">
+        <p className="input-explain">재료를 입력하세요</p>
         <input
           value={ingredientInput}
           onChange={(e) => setIngredientInput(e.target.value)}

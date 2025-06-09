@@ -9,7 +9,7 @@ function Login({ onLogin, onRegisterClick }) {
 
   const handleSubmit = async () => {
     if (!inputUserId.trim()) {
-      setError("유저 ID를 입력해주세요.");
+      setError("유저 닉네임을 입력해주세요.");
       return;
     }
 

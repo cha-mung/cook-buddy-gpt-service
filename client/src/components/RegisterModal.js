@@ -13,10 +13,10 @@ function RegisterModal({ onClose }) {
     }
 
     try {
-      const res = await fetch("/api/register", {
+      const res = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, userId }),
+        body: JSON.stringify({ userId: "hyunah123", email: "hyunah@example.com" }),
       });
 
       const data = await res.json();
@@ -48,7 +48,7 @@ function RegisterModal({ onClose }) {
           type="text"
           value={userId}
           onChange={(e) => setUserId(e.target.value)}
-          placeholder="사용할 아이디"
+          placeholder="사용할 닉네임"
           className="login-input"
         />
         <button onClick={handleRegister} className="login-button">회원가입</button>

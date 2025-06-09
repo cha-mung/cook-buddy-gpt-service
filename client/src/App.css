@@ -81,7 +81,7 @@
   gap: 12px;
   padding: 10px 20px;
   margin-bottom: 30px;
-  background-color: #fff0e5;
+  background-color: #fff8f4;
   border-radius: 999px;
   font-size: 1rem;
   color: #444;
@@ -156,6 +156,7 @@
   align-items: flex-start;
   gap: 30px;
   position: relative;
+  height: 100vh;
 }
 
 /* 패널 배경 냉장고 이미지 */
