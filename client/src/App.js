@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Login from "./components/Login";
 import FridgePanel from "./components/FridgePanel";
 import RecipePanel from "./components/RecipePanel";
+import { logVisitor } from "./utils/visitorLogger";
+
 import "./App.css";
 
 function App() {
@@ -19,6 +21,18 @@ function App() {
       fetchFridge(userId);
     }
   }, [userId]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (window.ip && window.ip !== "null") {
+        logVisitor(window.ip);
+        clearInterval(interval); // 한 번만 실행
+      }
+    }, 300); // 0.3초 간격 polling
+
+    return () => clearInterval(interval);
+  }, []);
+
 
   const handleLogin = (id) => {
     setUserId(id);

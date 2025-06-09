@@ -43,7 +43,7 @@ function Login({ onLogin, onRegisterClick }) {
           type="text"
           value={inputUserId}
           onChange={(e) => setInputUserId(e.target.value)}
-          placeholder="User ID를 입력하세요"
+          placeholder="닉네임을 입력하세요"
           className="login-input"
         />
         <button onClick={handleSubmit} className="login-button">
