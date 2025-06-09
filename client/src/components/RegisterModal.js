@@ -16,7 +16,7 @@ function RegisterModal({ onClose }) {
       const res = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: "hyunah123", email: "hyunah@example.com" }),
+        body: JSON.stringify({ userId, email }),
       });
 
       const data = await res.json();

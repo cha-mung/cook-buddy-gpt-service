@@ -24,6 +24,7 @@ function App() {
     setUserId(id);
     localStorage.setItem("userId", id);
     fetchFridge(id);
+    setStatus("");
   };
 
   const handleLogout = () => {

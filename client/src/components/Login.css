@@ -48,7 +48,7 @@
 /* 에러 메시지 스타일 */
 .login-error {
   margin-top: 10px;
-  color: red;
+  color: #ff3e6c;
   font-size: 0.9rem;
   text-align: center;
 }

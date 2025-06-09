@@ -49,8 +49,8 @@ function Login({ onLogin, onRegisterClick }) {
         <button onClick={handleSubmit} className="login-button">
           로그인
         </button>
-        {error && <p className="login-error">{error}</p>}
       </div>
+      {error && <p className="login-error">{error}</p>}
       {/* 👇 회원가입 링크 추가 */}
       <div className="login-register-link">
         아직 아이디가 없나요?{" "}

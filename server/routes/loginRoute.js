@@ -3,11 +3,10 @@ import express from "express";
 import admin from "../firebase/admin.js"; // 🔄 Firebase 초기화 모듈 import
 
 const router = express.Router();
-
 const db = admin.database();
 const usersRef = db.ref("users");
 
-// ✅ 로그인 + 사용자 등록 확인 라우트
+// ✅ 로그인 전용 라우트 (등록된 사용자만 허용)
 router.post("/", async (req, res) => {
   const { userId } = req.body;
 
@@ -19,18 +18,13 @@ router.post("/", async (req, res) => {
     const snapshot = await usersRef.child(userId).once("value");
 
     if (snapshot.exists()) {
-      return res.json({ success: true, message: "이미 존재하는 사용자" });
+      return res.json({ success: true, message: "로그인 성공" });
+    } else {
+      return res.status(404).json({ success: false, message: "존재하지 않는 사용자입니다. 회원가입을 먼저 해주세요." });
     }
-
-    await usersRef.child(userId).set({
-      createdAt: new Date().toISOString(),
-      fridge: [],
-    });
-
-    res.json({ success: true });
   } catch (err) {
-    console.error("❌ Firebase 저장 실패:", err);
-    res.status(500).json({ success: false, message: "Firebase 저장 실패" });
+    console.error("❌ 로그인 확인 실패:", err);
+    res.status(500).json({ success: false, message: "서버 오류로 로그인 실패" });
   }
 });
 
