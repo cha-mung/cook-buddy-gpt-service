@@ -128,17 +128,22 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="App-title">🍽️ Cook Buddy</h1>
+      <header className="App-header">
+        <h1 className="App-title">🍽️ Cook Buddy</h1>
+      </header>
+
       {!userId ? (
-        <Login onLogin={handleLogin} />
+        <main className="App-loginSection">
+          <Login onLogin={handleLogin} />
+        </main>
       ) : (
-        <>
-          <div className="App-userInfo">
-            <b>👤 사용자:</b> {userId}
+        <main className="App-main">
+          <div className="App-userBar">
+            <span><b>👤 사용자:</b> {userId}</span>
             <button onClick={handleLogout}>로그아웃</button>
           </div>
 
-          <div className="App-mainLayout">
+          <section className="App-panels">
             <FridgePanel
               ingredientInput={ingredientInput}
               setIngredientInput={setIngredientInput}
@@ -155,8 +160,8 @@ function App() {
               error={error}
               recipes={recipes}
             />
-          </div>
-        </>
+          </section>
+        </main>
       )}
     </div>
   );

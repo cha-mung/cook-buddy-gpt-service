@@ -1,0 +1,52 @@
+/* 전체 로그인 컴포넌트 스타일 */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 12px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* 입력창 스타일 */
+.login-input {
+  padding: 10px 14px;
+  border: 2px solid #ffe5ec;
+  border-radius: 999px;
+  outline: none;
+  font-size: 1rem;
+  background-color: #fff0f5;
+  box-shadow: 2px 2px 5px rgba(255, 192, 203, 0.3);
+  transition: all 0.2s ease;
+}
+
+.login-input:focus {
+  border-color: #ffb3c6;
+  background-color: #fff6fa;
+}
+
+/* 버튼 스타일 */
+.login-button {
+  padding: 10px 20px;
+  background-color: #ffb3c6;
+  border: none;
+  border-radius: 999px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(255, 182, 193, 0.4);
+  transition: background-color 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: #ff8fab;
+}
+
+/* 에러 메시지 스타일 */
+.login-error {
+  margin-top: 10px;
+  color: red;
+  font-size: 0.9rem;
+  text-align: center;
+}

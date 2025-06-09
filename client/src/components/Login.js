@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Login.css"; // 스타일 파일 추가
 
 function Login({ onLogin }) {
   const [inputUserId, setInputUserId] = useState("");
@@ -11,7 +12,6 @@ function Login({ onLogin }) {
     }
 
     try {
-      // 백엔드로 ID 전송하여 Google Sheets에 저장 요청
       const res = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -35,16 +35,18 @@ function Login({ onLogin }) {
   };
 
   return (
-    <div style={{ marginBottom: "20px" }}>
+    <div className="login-container">
       <input
         type="text"
         value={inputUserId}
         onChange={(e) => setInputUserId(e.target.value)}
         placeholder="User ID를 입력하세요"
-        style={{ padding: "8px", marginRight: "10px" }}
+        className="login-input"
       />
-      <button onClick={handleSubmit}>로그인</button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      <button onClick={handleSubmit} className="login-button">
+        로그인
+      </button>
+      {error && <p className="login-error">{error}</p>}
     </div>
   );
 }

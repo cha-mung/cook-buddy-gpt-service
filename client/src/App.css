@@ -1,29 +1,120 @@
+/* 기존 유지 */
 .App {
   text-align: center;
+  padding: 2rem 10rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #fffaf0, #fef6e4);
+  min-height: 100vh;
+  animation: fadeIn 0.8s ease-in;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 🔸로그인 화면 섹션 */
+.App-loginSection {
+  margin-top: 6rem;
   padding: 2rem;
-  font-family: sans-serif;
+  background-color: #fff8f0;
+  border-radius: 24px;
+  box-shadow: 0 4px 10px rgba(255, 188, 150, 0.2);
+  display: inline-block;
+  transition: all 0.3s ease;
 }
 
-.App-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+/* 🔸메인 화면 전체 래퍼 */
+.App-main {
+  padding: 2rem;
+  margin-top: 3rem;
+  animation: fadeIn 0.5s ease-in;
 }
 
-.App-userInfo {
-  margin-bottom: 20px;
-}
-
-.App-userInfo button {
-  margin-left: 10px;
-  padding: 6px 12px;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.App-mainLayout {
+/* 🔸사용자 정보 바 */
+.App-userBar {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  background-color: #fff0e5;
+  border-radius: 999px;
+  margin-bottom: 30px;
+  font-size: 1rem;
+  color: #444;
+  box-shadow: 2px 2px 10px rgba(255, 180, 140, 0.15);
+}
+
+.App-userBar button {
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  background-color: #ffcba4;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.App-userBar button:hover {
+  background-color: #ff9f68;
+}
+
+/* 🔸제목 */
+.App-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 10rem;
+  margin-bottom: 2rem;
+  color: #ff9f68;
+  text-shadow: 1px 1px 2px #ffd3b6;
+}
+
+/* 🔸냉장고 + 추천 영역 */
+.App-panels {
+  display: flex;
+  flex-direction: row;
   gap: 30px;
   align-items: flex-start;
+  justify-content: center;
+  position: relative;
 }
 
+.App-panels::before {
+  content: "";
+  position: absolute;
+  top: 140px;
+  right: 5%;
+  width: 140px;
+  height: 280px;
+  background-image: url('./image/fridge.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+  animation: fridgeBounce 3s ease-in-out infinite;
+  z-index: -1;
+}
+
+.App-panel {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 냉장고 bounce 애니메이션 */
+@keyframes fridgeBounce {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}

@@ -1,71 +1,124 @@
-/* client/src/components/FridgePanel.css */
-
 .fridge-container {
   flex: 2;
-  background: #f4faff;
+  background: #fef6ff;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px rgba(200, 160, 255, 0.2);
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.fridge-input {
+.fridge-container h2 {
+  font-size: 1.5rem;
+  color: #d49845;
   margin-bottom: 16px;
 }
 
+.fridge-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
 .fridge-input input {
-  width: 70%;
-  padding: 8px;
-  margin-right: 10px;
+  width: 90%;
+  padding: 10px 14px;
+  border: 2px solid #ffeacc;
+  border-radius: 999px;
+  background-color: #ffeacc;
+  font-size: 1rem;
+  box-shadow: 1px 1px 6px rgba(210, 180, 255, 0.2);
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.fridge-input input:focus {
+  border-color: #ffd5a5;
+  background-color: #ffd5a5;
+}
+
+.fridge-input button {
+  align-self: flex-end;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 999px;
+  background-color: #ffb7a5;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.fridge-input button:hover {
+  background-color: #fc8886;
 }
 
 .fridge-input p {
-  color: green;
-  margin-top: 8px;
+  color: #4caf50;
+  margin: 0;
+  font-size: 0.9rem;
 }
 
 .fridge-grid {
-  /* background-image: url("../image/fridge.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
   width: 100%;
-  height: 300px;
+  height: auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  background: #fffaff;
+  border: 2px dashed #e4d7ff;
+  box-shadow: inset 0 0 6px rgba(220, 190, 255, 0.2);
   box-sizing: border-box;
 }
 
 .fridge-box {
-  background: #fff;
-  border: 1px solid #aaa;
-  border-radius: 6px;
-  padding: 8px;
+  background: #ffffff;
+  border: 2px solid #e0d6ff;
+  border-radius: 16px;
+  padding: 10px;
   text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #555;
   cursor: pointer;
   position: relative;
+  transition: all 0.2s ease;
+  box-shadow: 1px 1px 6px rgba(220, 200, 255, 0.15);
+}
+
+.fridge-box:hover {
+  transform: scale(1.03);
 }
 
 .fridge-box.selected {
-  background: #d0eaff;
+  background: #f5e0ff;
+  border-color: #e48dff;
   font-weight: bold;
-  color: #2a75f3;
+  color: #7032e3;
 }
 
 .fridge-box .delete-button {
   position: absolute;
-  top: 4px;
-  right: 6px;
+  top: 10px;
+  right:3px;
   background: none;
   border: none;
-  color: red;
+  font-size: 0.5rem;
+  color: #ff5e5e;
   cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.fridge-box .delete-button:hover {
+  transform: scale(1.2);
 }
 
 .fridge-box .star {
   position: absolute;
-  top: 4px;
-  left: 6px;
+  top: 12px;
+  left: 10px;
+  font-size: 0.8rem;
+  color: #ffd700;
 }
