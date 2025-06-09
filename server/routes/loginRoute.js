@@ -8,9 +8,11 @@ const usersRef = db.ref("users");
 
 // ✅ 로그인 전용 라우트 (등록된 사용자만 허용)
 router.post("/", async (req, res) => {
+  console.log("📩 로그인 요청 도착:", req.body);
   const { userId } = req.body;
 
   if (!userId) {
+    console.log("❗ userId 누락됨");
     return res.status(400).json({ success: false, message: "userId 누락" });
   }
 
