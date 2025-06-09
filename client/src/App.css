@@ -274,3 +274,87 @@
 .App-closeButton:hover {
   background-color: #bbb;
 }
+
+/* 📱 모바일 대응 (가로폭 768px 이하) */
+@media screen and (max-width: 768px) {
+  .App {
+    width: 95%;
+    height: auto;
+    margin: 2rem 0;
+    padding: 30px 16px;
+    border-radius: 40px;
+  }
+
+  .App-title {
+    font-size: 2rem;
+  }
+
+  .App-subtitle {
+    font-size: 1rem;
+    padding: 0 8px;
+  }
+
+  .App-main {
+    width: 100%;
+    padding: 1.5rem 0.5rem;
+  }
+
+  .App-userBar {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .App-userBar button {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .App-panels {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .App-panels::before {
+    display: none; /* 냉장고 배경 숨김 */
+  }
+
+  .App-panel {
+    width: 100%;
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .App-description {
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .App-exampleImage {
+    max-width: 100%;
+  }
+
+  .App-feedbackForm {
+    padding: 0.8rem;
+  }
+
+  .App-feedbackForm textarea {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  .App-feedbackButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .App-feedbackButtons button {
+    width: 100%;
+  }
+}
