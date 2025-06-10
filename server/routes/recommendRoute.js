@@ -29,14 +29,33 @@ export default function (openai) {
   const usersRef = db.ref("users");
 
   router.post("/", async (req, res) => {
-    const { userId, mustHaveIngredients = [] } = req.body; // ✅ mustHaveIngredients 추가
+  const {
+    userId,
+    mustHaveIngredients = [],
+    ingredients = [], // ✅ 게스트용 재료 직접 입력 받기
+  } = req.body;
 
-    if (!userId) {
-      return res.status(400).json({ success: false, message: "userId 누락" });
+  if (!userId) {
+    return res.status(400).json({ success: false, message: "userId 누락" });
+  }
+
+  let fridgeIngredients = [];
+
+  if (userId === "guest") {
+    // ✅ 게스트는 재료를 body에서 직접 사용
+    fridgeIngredients = ingredients;
+    if (!fridgeIngredients.length) {
+      return res.json({
+        recipes: [{
+          title: "재료가 없습니다",
+          mainIngredients: [],
+          extraIngredients: [],
+          steps: ["기본 재료를 전달하지 않아 추천할 수 없습니다."]
+        }]
+      });
     }
-
-    // ✅ Firebase에서 냉장고 재료 불러오기
-    let fridgeIngredients = [];
+  } else {
+    // ✅ 로그인 사용자는 Firebase에서 재료 조회
     try {
       const snapshot = await usersRef.child(userId).child("fridge").once("value");
       fridgeIngredients = snapshot.val() || [];
@@ -62,13 +81,15 @@ export default function (openai) {
         }]
       });
     }
+  }
 
     // ✅ 로컬 레시피 불러오기
-    const dataPath = path.join(process.cwd(), "server", "data", "recipes.json");
+    const dataPath = path.resolve(__dirname, "../data/recipes.json");
     let localRecipes = [];
     try {
       const raw = fs.readFileSync(dataPath, "utf-8");
       localRecipes = JSON.parse(raw);
+      console.log("레시피 데이터 불러오기");
     } catch (err) {
       console.error("❌ 로컬 레시피 로딩 실패:", err);
     }
