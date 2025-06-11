@@ -50,14 +50,14 @@ function App() {
     setStatus("");
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("userId");
-    setUserId("");
-    setIngredients([]);
-    setMustHave([]);
-    setRecipes([]);
-    setError("");
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("userId");
+  //   setUserId("");
+  //   setIngredients([]);
+  //   setMustHave([]);
+  //   setRecipes([]);
+  //   setError("");
+  // };
 
   const fetchFridge = async (uid) => {
     try {
