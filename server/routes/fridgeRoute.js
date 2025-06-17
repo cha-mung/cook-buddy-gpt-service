@@ -1,33 +1,12 @@
 // server/routes/fridgeRoute.js
 import express from "express";
-import admin from "firebase-admin";
-import dotenv from "dotenv";
-dotenv.config();
-import { readFileSync } from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
+import admin from "../firebase/admin.js"; 
+
+const db = admin.database();
+const usersRef = db.ref("users");
 
 export default function () {
   const router = express.Router();
-
-  // __dirname 계산
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-
-  // Firebase 초기화 (sync 방식으로 JSON 로드)
-  if (!admin.apps.length) {
-    const serviceAccountPath = path.resolve(__dirname, "../firebase/serviceAccountKey.json");
-    const serviceAccount = JSON.parse(readFileSync(serviceAccountPath, "utf-8"));
-
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-      databaseURL: process.env.FIREBASE_DATABASE_URL,
-    });
-  }
-
-  const db = admin.database();
-  const usersRef = db.ref("users");
 
   // ✅ 냉장고에 재료 추가
   router.post("/add", async (req, res) => {

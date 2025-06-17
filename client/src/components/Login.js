@@ -17,7 +17,7 @@ function Login({ onLogin, onRegisterClick }) {
       const API_URL =
         process.env.REACT_APP_API_URL ||
         (window.location.hostname === "localhost"
-          ? "http://localhost:3001"
+          ? "http://localhost:5000"
           : "https://cook-buddy-gpt-service.onrender.com");
 
       const res = await fetch(`${API_URL}/api/login`, {
@@ -26,6 +26,14 @@ function Login({ onLogin, onRegisterClick }) {
         body: JSON.stringify({ userId: inputUserId.trim() }),
       });
 
+       console.log("🛎️ fetch 응답:", res);
+     if (!res.ok) {
+       // HTTP 200이 아닌 경우, 상태 코드와 응답 텍스트를 찍어서 원인 파악
+       const txt = await res.text();
+       console.error("❌ 서버 에러:", res.status, txt);
+       setError(`서버 에러: ${res.status}`);
+       return;
+     }
       const data = await res.json();
 
       if (data.success) {

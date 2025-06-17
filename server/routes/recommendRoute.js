@@ -1,29 +1,10 @@
 // server/routes/recommendRoute.js
 import express from "express";
-import fs from "fs";
-import path from "path";
-import admin from "firebase-admin";
-import dotenv from "dotenv";
-dotenv.config();
-
-import { fileURLToPath } from "url";
-import { dirname } from "path";
+import admin from "../firebase/admin.js";
 
 const router = express.Router();
 
 export default function (openai) {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-
-  if (!admin.apps.length) {
-    const serviceAccountPath = path.resolve(__dirname, "../firebase/serviceAccountKey.json");
-    const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf-8"));
-
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-      databaseURL: process.env.FIREBASE_DATABASE_URL,
-    });
-  }
 
   const db = admin.database();
   const usersRef = db.ref("users");

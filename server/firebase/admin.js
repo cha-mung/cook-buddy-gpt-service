@@ -1,23 +1,23 @@
 // firebase/admin.js
 import admin from "firebase-admin";
-import fs from "fs";
-import path from "path";
 import dotenv from "dotenv";
-dotenv.config(); 
+dotenv.config();
 
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// env 에 JSON.stringify된 서비스 계정 키가 들어 있어야 합니다.
+let serviceAccount;
+try {
+  serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_KEY);
+} catch (err) {
+  console.error("❌ FIREBASE_ADMIN_KEY 파싱 실패:", err);
+  process.exit(1);
+}
 
 if (!admin.apps.length) {
-  const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_KEY);
-
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://cook-buddy-3c414-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
   });
+  
 }
 
 export default admin;

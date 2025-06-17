@@ -8,13 +8,7 @@ import serviceImage from "./image/service-image.png";
 import "./App.css";
 
 function App() {
-  const [userId, setUserId] = useState(() => {
-    const stored = localStorage.getItem("userId");
-    if (stored) return stored;
-    localStorage.setItem("userId", "mori");
-    return "mori";
-  });
-
+  const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
   const [ingredientInput, setIngredientInput] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [mustHave, setMustHave] = useState([]);
@@ -50,21 +44,21 @@ function App() {
     setStatus("");
   };
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem("userId");
-  //   setUserId("");
-  //   setIngredients([]);
-  //   setMustHave([]);
-  //   setRecipes([]);
-  //   setError("");
-  // };
+  const handleLogout = () => {
+    localStorage.removeItem("userId");
+    setUserId("");
+    setIngredients([]);
+    setMustHave([]);
+    setRecipes([]);
+    setError("");
+  };
 
   const fetchFridge = async (uid) => {
     try {
       const API_URL =
         process.env.REACT_APP_API_URL ||
         (window.location.hostname === "localhost"
-          ? "http://localhost:3000"
+          ? "http://localhost:5000"
           : "https://cook-buddy-gpt-service.onrender.com");
       const res = await fetch(`${API_URL}/api/fridge/${uid}`);
       const data = await res.json();
@@ -86,7 +80,7 @@ function App() {
       const API_URL =
         process.env.REACT_APP_API_URL ||
         (window.location.hostname === "localhost"
-          ? "http://localhost:3000"
+          ? "http://localhost:5000"
           : "https://cook-buddy-gpt-service.onrender.com");
       const res = await fetch(`${API_URL}/api/fridge/add`, {
         method: "POST",
@@ -153,7 +147,7 @@ function App() {
       const API_URL =
         process.env.REACT_APP_API_URL ||
         (window.location.hostname === "localhost"
-          ? "http://localhost:3000"
+          ? "http://localhost:5000"
           : "https://cook-buddy-gpt-service.onrender.com");
 
       const res = await fetch(`${API_URL}/api/recommend`, {
@@ -233,18 +227,9 @@ function App() {
         ) : (
           <main className="App-main">
             <div className="App-userBar">
-              {/* <span><b>👤 사용자:</b> {userId}</span> */}
-              <h2>Cook Buddy란?</h2>
-              <p>
-                자취생을 위한 맞춤형 요리 레시피 추천 서비스입니다. <br />
-                냉장고 속 재료를 기반으로 가능한 레시피를 추천해드려요. <br />
-                오늘 어떤 요리를 할지 고민이라면, 지금 시작해보세요!
-              </p>
-              <div className="App-contentBox">
-                <span><b>👤 사용자:</b> 게스트</span>
-                <button onClick={() => setShowFeedback(!showFeedback)}>피드백</button>
-                {/* <button onClick={handleLogout}>로그아웃</button> */}
-              </div>
+              <span><b>👤 사용자:</b> {userId}</span>
+              <button onClick={() => setShowFeedback(!showFeedback)}>피드백</button>
+              <button onClick={handleLogout}>로그아웃</button>
             </div>
             {showFeedback && (
               <div className="App-feedbackForm">
