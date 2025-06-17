@@ -3,7 +3,7 @@
 ## 실행 방법(Running the App, bash 이용)
 백엔드 서버 시작
 
-cd server
+cd server \n
 npm run start
 
 ## 개발 모드로 실행 (코드 변경 시 자동 재시작)
