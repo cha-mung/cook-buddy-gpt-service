@@ -1,6 +1,6 @@
-#Cook Buddy
+# Cook Buddy
 
-##실행 방법(Running the App, bash 이용)
+## 실행 방법(Running the App, bash 이용)
 백엔드 서버 시작
 
 cd server
